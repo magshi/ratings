@@ -1,0 +1,11 @@
+<html>
+    <p>Profile for {{ user.id }}</p>
+    <p>Age: {{ user.age }}</p>
+    <p>Movies Watched: {{ user.ratings|length }}</p>
+    {% for rating in ratings %}
+        <div>
+            Title: {{ rating.movie.title }}
+            Rating: {{ rating.rating }}
+        </div>
+    {% endfor %}
+</html>
