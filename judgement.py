@@ -7,9 +7,15 @@ def index():
     user_list = model.session.query(model.User).limit(5).all()
     return render_template("user_list.html", users=user_list)
 
-@app.route("/signup")
+@app.route("/signup", methods=['GET', 'POST'])
 def signup():
-    pass
+    beans = 5
+    return render_template("signup.html", bean = beans)
+
+@app.route("/create_user", methods=['GET', 'POST'])
+def create_user():
+    print request.form["username"]
+    return "Hello"
 
 @app.route("/users")
 def show_users():
