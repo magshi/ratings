@@ -1,5 +1,6 @@
-from flask import Flask, render_template, redirect, request
+from flask import Flask, render_template, redirect, request, flash
 import model
+
 app = Flask(__name__)
 
 @app.route("/")
@@ -7,15 +8,33 @@ def index():
     user_list = model.session.query(model.User).limit(5).all()
     return render_template("user_list.html", users=user_list)
 
-@app.route("/signup", methods=['GET', 'POST'])
+@app.route("/signup", methods=['GET'])
 def signup():
-    beans = 5
-    return render_template("signup.html", bean = beans)
+    return render_template("signup.html")
 
-@app.route("/create_user", methods=['GET', 'POST'])
-def create_user():
-    print request.form["username"]
-    return "Hello"
+@app.route("/signup", methods=['POST'])
+def process_signup():
+    user = model.User(email = request.form.get('email'),
+                password = request.form.get('password'),
+                age = request.form.get('age'),
+                zipcode = request.form.get('zipcode'),
+                gender = request.form.get('gender'),
+                occupation = request.form.get('occupation'))
+
+    print user.email, user.password, user.zipcode, user.gender, user.occupation
+
+    model.session.add(user)
+    model.session.commit()
+    flash("Thank you for your information!")
+    return redirect("/")
+
+@app.route("/login", methods=['GET'])
+def login():
+    return render_template("login.html")
+
+@app.route("/login", methods=['POST'])
+def process_login():
+    pass
 
 @app.route("/users")
 def show_users():
@@ -31,6 +50,8 @@ def show_profile(id):
     
 
     return render_template("user_profile.html", user = user, ratings = ratings_list)
+
+app.secret_key = """\xed\x8b\xcf^L\xb1\xf5\x12'\xcc\xb9\xeb<\xefL\xd8\x15c0\x1e=kz;"""
 
 if __name__ == "__main__":
     app.run(debug = True)

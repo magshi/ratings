@@ -4,17 +4,57 @@
 
     <body>
 
-        <form action="/create_user" method="post">
+        <form action="/signup" method="post">
             <div>
-                <label for="email">Email address</label>
+                <label for="email">E-mail:</label>
                 <input type="email" name="email"></input>
             </div>
 
             <div>
-                <label for="password">Password</label>
+                <label for="password">Password:</label>
                 <input type="password" name="password"></input>
             </div>
 
+            <div>
+                <label for="age">Age:</label>
+                <input type="number" name="age"></input>
+            </div>
+            <div>
+                <label for="zipcode">Zipcode:</label>
+                <input type="text" name="zipcode"></input>
+            </div>
+            <div>
+                <label for="gender">Gender:</label>
+                <input type="radio" name="gender" value="m">Male</input>
+                <input type="radio" name="gender" value="f">Female</input>
+                <input type="radio" name="gender" value="">Other/Rather not say</input>
+            </div>
+            <div>
+                <label for="occupation">Occupation:</label>
+                <select name="occupation">
+                    <option value="administrator">Administrator</option>
+                    <option value="artist">Artist</option>
+                    <option value="doctor">Doctor</option>
+                    <option value="educator">Educator</option>
+                    <option value="engineer">Engineer</option>
+                    <option value="entertainment">Entertainment</option>
+                    <option value="executive">Executive</option>
+                    <option value="healthcare">Healthcare</option>
+                    <option value="homemaker">Homemaker</option>
+                    <option value="lawyer">Lawyer</option>
+                    <option value="librarian">Librarian</option>
+                    <option value="marketing">Marketing</option>
+                    <option value="none">None (NUN?!)</option>
+                    <option value="programmer">Programmer</option>
+                    <option value="retired">Retired</option>
+                    <option value="salesman">Salesman</option>
+                    <option value="scientist">Scientist</option>
+                    <option value="student">Student</option>
+                    <option value="technician">Technician</option>
+                    <option value="writer">Writer</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
             <div>
                 <input type="submit"></input>
             </div>
